@@ -39,7 +39,7 @@ Picture goes here
 __________________
 
 ## Rough Breakdown of Tasks
--build initial HTML: ;
+-build initial HTML: 
 
 -familiarize selves w/ these APIs:
 Hillary - Trails;
@@ -51,6 +51,8 @@ Jen / Jon --- look into CSS Grid;
 who's responsible for merges: TBD;
 
 Luis --- validation (making sure code works; semicolons missing; etc);
+
+GitHub issue enforcer: 
 
  
 

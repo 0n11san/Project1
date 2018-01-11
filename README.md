@@ -15,12 +15,12 @@ possible alts:
 - Provides weather data
 
 ## UI Mockup
-![alt text](https://github.com/0n11san/Project1/blob/master/UI%20Mockup.jpg)
+![alt text](https://github.com/0n11san/Project1/blob/master/images/UI_Mockup.jpg)
 
 - look/feel: (single page app) maybe something like Airbnb / backpacker.com (clean interface w/ big picture) name of app; single search  (location of where you are / want to go); radius; jump down
 
 ## Architecture
-![alt text](https://github.com/0n11san/Project1/blob/master/Architecture.jpg)
+![alt text](https://github.com/0n11san/Project1/blob/master/images/Architecture.jpg)
 
 ## APIs to be Used
 

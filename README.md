@@ -63,10 +63,10 @@ Branch Master Enforcer:
 
 ## Notes
 -(move every issue into one of these "columns"):
-to do
-in progress
-code review
-done (merged)
+    -to do
+    -in progress
+    -code review
+    -done (merged)
 
 
 ## Requirements

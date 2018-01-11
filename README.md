@@ -57,5 +57,7 @@ GitHub Issue Enforcer :
 
 Project Board Enforcer :
 (makes sure issues are being moved)
+
+Branch Master: 
  
 

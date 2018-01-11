@@ -12,11 +12,13 @@ Hiking App. Presents the user w/ a search box that ask their zip code. Performs 
 
 ## UI Mockup
 UI sketch goes here...
+https://github.com/0n11san/Project1/blob/master/UI%20Mockup.jpg
 
 - look/feel: (single page app) maybe something like Airbnb / backpacker.com (clean interface w/ big picture) name of app; single search  (location of where you are / want to go); radius; jump down
 
 ## Architecture
 Picture goes here...
+https://github.com/0n11san/Project1/blob/master/Architecture.jpg
 
 ## APIs to be Used
 

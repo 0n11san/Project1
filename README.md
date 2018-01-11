@@ -1,7 +1,7 @@
 # Group Project 1
 
 ## Name: Trail Marker
-possible alts: Kairns (little rocks as logo)
+possible alts: Kairns (little stacked rocks as logo)
 
 ## Description
 ## MVP (Minimally Viable Product)

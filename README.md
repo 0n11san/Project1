@@ -8,7 +8,8 @@ possible alts: Kairns (little rocks as logo)
 Hiking App. Presents the user w/ a search box that ask their zip code. Performs a search for trails (extra: within a certain radius of that zip). Site returns several trails within that zip. 
 ## Added Bonuses
 - If user selects trail, they can add comments, make a profile, give rating (all stored in Firebase).
-- -About the team page (footer);
+- About the team page (footer);
+- Provides weather data
 
 ## UI Mockup
 UI sketch goes here...

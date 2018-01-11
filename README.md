@@ -49,7 +49,7 @@ Soraia - Weather;
 
 Jen / Jon --- look into CSS Grid;
 
-who's responsible for merges: TBD;
+who's responsible for Merges : TBD;
 
 Luis --- validation (making sure code works; semicolons missing; etc);
 
@@ -59,7 +59,7 @@ GitHub Issue Enforcer :
 Project Board Enforcer :
 (makes sure issues are being moved)
 
-Branch Master: 
+Branch Master Enforcer: 
 
 ## Notes
 -(move every issue into one of these "columns"):

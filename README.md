@@ -1,14 +1,53 @@
-# Project1
-Group Project 1
+# Group Project 1
 
-Name: TBD
--2 APIs: Trail API / Mashape; Google Maps; Weather;
--AJAX pull: uses Curl (Sav tested and said it should be fine);
--new library: InstaFeed; 
--polished fronted / UI: CSS Grid;
--look/feel: (single page app) maybe something like Airbnb / backpacker.com (clean interface w/ big picture) name of app; single search  (location of where you are / want to go); radius; jump down
--user input validation: zip code; comment and review section (form of name/ date visited trail / stars)
--store above in firebase;
--about the team page (footer);
+## Name: Trail Marker
+possible alts: Kairns (little rocks as logo)
 
-focused on hiking;
+## Description
+## MVP (Minimally Viable Product)
+Hiking App. Presents the user w/ a search box that ask their zip code. Performs a search for trails (extra: within a certain radius of that zip). Site returns several trails within that zip. 
+## Added Bonuses
+- If user selects trail, they can add comments, make a profile, give rating (all stored in Firebase).
+- -About the team page (footer);
+
+## UI Mockup
+UI sketch goes here...
+
+- look/feel: (single page app) maybe something like Airbnb / backpacker.com (clean interface w/ big picture) name of app; single search  (location of where you are / want to go); radius; jump down
+
+## Architecture
+Picture goes here...
+
+## APIs to be Used
+
+- Trail API / Mashape; 
+- Google Maps; 
+- Open Weather;
+
+## Team Members
+
+- Hillary
+- Jen
+- Soraia
+- Luis
+- Jon
+
+Picture goes here
+__________________
+
+## Rough Breakdown of Tasks
+-build initial HTML: ;
+
+-familiarize selves w/ these APIs:
+Hillary - Trails;
+Jon - Maps;
+Soraia - Weather; 
+
+Jen / Jon --- look into CSS Grid;
+
+who's responsible for merges: TBD;
+
+Luis --- validation (making sure code works; semicolons missing; etc);
+
+ 
+

@@ -52,7 +52,10 @@ who's responsible for merges: TBD;
 
 Luis --- validation (making sure code works; semicolons missing; etc);
 
-GitHub issue enforcer: 
+GitHub Issue Enforcer : 
+(makes sure eveyrone is creating issues for things they're working on)
 
+Project Board Enforcer :
+(makes sure issues are being moved)
  
 

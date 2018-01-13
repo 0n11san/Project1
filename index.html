@@ -13,13 +13,33 @@
 </head>
 
 <body>
-	<h1>Placeholder</h1>
-	<label for="txtAddress">Enter Address</label>
-	<input type="text" name="txtAddress" class="txtAddress">
-	<button type="button" id="submit">Submit</button>
-	<div class="main"></div>
-	<script type='text/javascript' src='assets/javascript/logic.js'></script>
+	<div class="page-header">
+		<div class="page-title">
+			<h1>Kairn</h1>
+			<h2>Find your trail. </h2>
+		</div>
+		<div class="search-div">
+			<label for="txtAddress">Enter Address</label>
+			<input type="text" name="txtAddress" id="txtAddress">
+			<button type="button" id="submit">Search</button>
+		</div>
+	</div>
+
+	<div class="search-results" id="search-results"></div>
+
+	<div class="footer">
+		<h2>About Us</h2>
+		<img src="http://via.placeholder.com/150x150" alt="placeholder image">
+		<p>Copyright 2018.</p>
+		<p>Powered by <a href="#">Google Maps</a>, <a href="#">Open Weather Map</a>, and <a href="#">Hiking Project datalist</a></p>
+	</div>
+
+	<!-- JAVASCRIPT -->
+	<!-- jQuery -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- custom javaScript -->
+	<script type='text/javascript' src='assets/javascript/logic.js'></script>
+
 </body>
 
 </html>

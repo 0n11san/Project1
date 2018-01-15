@@ -24,6 +24,9 @@ $("#submit").on("click", function() {
       long = response.results[0].geometry.location.lng;
       long = long.toFixed(4);
 
+      //calling weather API info
+      requestWeather(lat, long);
+
       //Call the hiking project api
       var queryURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxDistance=10&key=200206461-4fa8ac1aa85295888ce833cca1b5929f"
 

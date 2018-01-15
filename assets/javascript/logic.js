@@ -51,7 +51,7 @@ $("#submit").on("click", function() {
             contentDivTitle.attr("longitude", long);
             contentDivTitle.attr("value", i);
 
-            //Google Map Function
+            //Create variable to embed the google map at the latitude and longitude
             var embedMap = "<iframe class=\"map\" width=\"300\" height=\"300\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?q="+lat+","+long+"&hl=en&z=12&output=embed\"></iframe>"
 
             //Add content to the trail name and additional trail info divs

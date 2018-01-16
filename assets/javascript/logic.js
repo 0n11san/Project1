@@ -64,6 +64,11 @@ $("#submit").on("click", function() {
 
         });
     });
+    // Scroll the user down to search results
+    $('html, body').animate({
+      scrollTop: $("#search-results").offset().top
+    }, 2000);
+
 });
 
 

@@ -1,25 +1,165 @@
 body {
-    /* font-family: 'Open Sans', sans-serif; */
-    font-family: 'Merriweather', serif;
-    /* font-family: "Times New Roman", Times, serif; */
-    font-size: 200%;
-    background-color: black;
-    /*just in case main img doesn't load*/
-    background-image: url("../images/tanvi-malik-449.jpg");
-    /* placeholder image; source: unsplash.com */
-    background-size: cover;
-    background-repeat: no-repeat;
+  text-align: center;
+  background-color: #65737e;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
-h1 {
+/* HEADER */
+/* sets background into div */
+.page-header-background {
+  background-image: url("../images/fineas-anton-139335.jpg");
+  position: relative;
   color: white;
-  text-align: center;
-  position: absolute;
-    top: 250px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 50%;
-    height: 50%;
-    margin: auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 0;
+  padding-top: 66.64%;
+}
+
+/* sets title, subtitle and search bar into background div */
+.page-header {
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.header {
+  font-family: 'Amatic SC', cursive;
+  font-size: 150px;
+  margin: 10px;
+  color: #2b303b;
+}
+
+/* SEARCH BAR */
+.container-4{
+  overflow: hidden;
+  width: 400px;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-4 input#txtAddress{
+  width: 400px;
+  height: 60px;
+  background: #2b303b;
+  border: none;
+  font-size: 12pt;
+  float: left;
+  color: #fff;
+  padding-left: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.container-4 input#txtAddress::-webkit-input-placeholder {
+  color: #65737e;
+}
+
+.container-4 input#txtAddress:-moz-placeholder { /* Firefox 18- */
+  color: #65737e;
+}
+
+.container-4 input#txtAddress::-moz-placeholder {  /* Firefox 19+ */
+  color: #65737e;
+}
+
+.container-4 input#txtAddress:-ms-input-placeholder {
+  color: #65737e;
+}
+
+.container-4 button.icon{
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  border: none;
+  background: #232833;
+  height: 60px;
+  width: 60px;
+  color: #4f5b66;
+  opacity: 0;
+  font-size: 12pt;
+
+  -webkit-transition: all .55s ease;
+  -moz-transition: all .55s ease;
+  -ms-transition: all .55s ease;
+  -o-transition: all .55s ease;
+  transition: all .55s ease;
+}
+
+.container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon{
+  outline: none;
+  opacity: 1;
+  margin-left: -60px;
+}
+
+.container-4:hover button.icon:hover{
+  background: white;
+}
+
+/* SEARCH RESULTS */
+.search-results {
+  min-height: 600px;
+  font-size: 18px;
+}
+
+.newTrailTitle, .newTrailDescription {
+  width: 100%;
+  color: white;
+}
+
+.newTrailDescription {
+  background-color: #65737e;
+}
+.newTrailDescription {
+  background-color: #2b303b;
+}
+
+.newTrailTitle{
+  margin-top: 10px;
+}
+
+/* FOOTER */
+.credit-link {
+  color: white;
+}
+
+.credit-link:hover {
+  color: grey;
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  background: #2b303b;
+  font-family: 'Amatic SC', cursive;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+}
+
+.hover-image {
+  margin: 5px;
+  height: 75px;
+  width: 75px;
+  filter: gray; /* IE5+ */
+  -webkit-filter: grayscale(1); /* Webkit Nightlies & Chrome Canary */
+  -webkit-transition: all .8s ease-in-out;
+}
+
+.hover-image:hover {
+  height: 75px;
+  width: 75px;
+  filter: none;
+  -webkit-filter: grayscale(0);
+  -webkit-transform: scale(1.25);
 }

@@ -1,17 +1,77 @@
-</div><!DOCTYPE html>
+</div>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Group Project 1</title>
 
-		<link type='text/css' rel='stylesheet' href='assets/css/style.css'/>
+<head>
+	<title>Group Project 1</title>
 
-		<!-- placeholder font style; can be replaced! -->
-		<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
-		<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-  </head>
-	<body>
-		<h1>Placeholder</h1>
+	<link type='text/css' rel='stylesheet' href='assets/css/style.css' />
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Open+Sans+Condensed:300" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- only value added is a font awesome icon, may be able to download icon and remove bootstrap link -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
 
-		<script type='text/javascript' src='assets/javascript/logic.js'></script>
-	</body>
+<body>
+	<!-- background, header and search box -->
+	<div class="page-header-background">
+		<div class="page-header">
+			<div class="page-title">
+				<h1 class="header">Kairns</h1>
+				<h2>Find your trail. </h2>
+			</div>
+			<!-- search box -->
+			<div class="search-div">
+				<div class="box">
+				  <div class="container-4">
+				    <input type="text" id="txtAddress" placeholder="Enter Zip or Address" />
+				    <button type="button" class="icon" id="submit"><i class="fa fa-search"></i></button>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- search results populate below -->
+	<div class="search-results" id="search-results">
+		<div id="map">
+
+		</div>
+	</div>
+
+	<!-- footer -->
+	<div class="footer">
+		<h2>Meet The Makers:</h2>
+		<a href="https://github.com/hillary-joyce">
+			<img src="assets/images/hillary.jpg" alt="hillary" class="hover-image">
+		</a>
+		<a href="https://github.com/perryjen">
+			<img src="assets/images/jen.jpg" alt="jen" class="hover-image">
+		</a>
+		<a href="https://github.com/0n11san">
+			<img src="assets/images/jon.jpg" alt="jon" class="hover-image">
+		</a>
+		<a href="https://github.com/Icervant2">
+			<img src="assets/images/luis.png" alt="luis" class="hover-image">
+		</a>
+		<a href="https://github.com/SRAbreu">
+			<img src="assets/images/soraia.png" alt="soraia" class="hover-image">
+		</a>
+
+		<p>Copyright 2018.</p>
+		<p>Powered by <a href="https://maps.google.com" class="credit-link">Google Maps</a>, <a href="https://openweathermap.org/" class="credit-link">Open Weather Map</a>, and <a href="https://www.hikingproject.com/" class="credit-link">Hiking Project</a></p>
+	</div>
+
+	<!-- JAVASCRIPT -->
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- custom javaScript -->
+	<script type='text/javascript' src='assets/javascript/logic.js'></script>
+	<!-- Google Maps -->
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxR8ul7zia3vi_4CZMP8u1HGP_yg0uNGc">
+    </script>
+
+</body>
+
 </html>

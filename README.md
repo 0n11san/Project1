@@ -51,17 +51,15 @@ Soraia - Weather;
 
 Jen / Jon --- look into CSS Grid;
 
-who's responsible for Merges : TBD;
+## Team Roles
+Merge (Code Review) / Branch Master Enforcer : Jen;
+(making sure code works; semicolons missing; etc)
 
-Luis --- validation (making sure code works; semicolons missing; etc);
+GitHub Issue Enforcer : Luis
+(makes sure everyone is creating issues for things they're working on; and that issues are being assigned)
 
-GitHub Issue Enforcer : 
-(makes sure eveyrone is creating issues for things they're working on)
-
-Project Board Enforcer :
+Project Board Enforcer : Jon
 (makes sure issues are being moved)
-
-Branch Master Enforcer: 
 
 ## Notes
 -(move every issue into one of these "columns"):

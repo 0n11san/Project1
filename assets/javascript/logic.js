@@ -3,7 +3,7 @@
 //Set initial latitute and longitude variables, to be used later
 var lat = 0;
 var long = 0;
-
+var radius = 0;
 
 
 //////////////////////FUNCTIONALITY - SUBMIT////////////////////////////////////
@@ -15,6 +15,22 @@ $("#submit").on("click", function() {
   var userInput = $("#txtAddress").val();
   //trim the user input to the form needed for the api
   var userSearchTerm = userInput.split(' ').join('+');
+
+  radius = $("input:checked").val();
+  $("#miles").text(radius);
+
+
+//   //check to make sure one of the radius options have been selected
+//   var chx = $("input[name=radius]")
+//   for (var i=0; i < chx.length; i++){
+//     if (chx[i].type == 'radio' && chx[i].checked) {
+//     radius = $("input:checked").val();
+//     $("#miles").text(radius);
+//   } else {
+//     $("#error-select-radius").text("Please select your radius");
+//     return;
+//   };
+// };
 
   //call the google maps geocoding api using user search term
   var queryURLGeocode = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userSearchTerm + "&key=AIzaSyCSAYHZn9fz13c3bsl_RcS13HJu8wDJXCU"
@@ -32,7 +48,7 @@ $("#submit").on("click", function() {
       long = long.toFixed(4);
 
       //Next, call the hiking project data api using the latitude and longitude pulled fromt google geocoding
-      var queryURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxDistance=10&key=200206461-4fa8ac1aa85295888ce833cca1b5929f"
+      var queryURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxDistance="+radius+"&sort=distance&key=200206461-4fa8ac1aa85295888ce833cca1b5929f"
       $.ajax({
           url: queryURL,
           method: "GET"
@@ -55,7 +71,7 @@ $("#submit").on("click", function() {
             var embedMap = "<iframe class=\"map\" width=\"300\" height=\"300\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?q="+lat+","+long+"&hl=en&z=12&output=embed\"></iframe>"
 
             //Add content to the trail name and additional trail info divs
-            contentDivTitle.html("Name: " + response.trails[i].name + " Location: " + response.trails[i].location);
+            contentDivTitle.html("<strong>" + response.trails[i].name + "</strong> -- " + response.trails[i].location);
             contentDivMain.html("Summary: " + response.trails[i].summary + "<br>Current Weather: <span class='trailWeather" + i + "'></span>" + "<br>Length: " + response.trails[i].length + " mi <br> Ascent: " + response.trails[i].ascent + " ft<br>Current Conditions: " + response.trails[i].conditionStatus + "<br>" + embedMap).hide();
             //Append the new divs to the search results div
             $("#search-results").append(contentDivTitle);
@@ -77,7 +93,7 @@ $("#submit").on("click", function() {
 //When user selects a trail
 $(document).on('click', '.newTrailTitle', function() {
   //slide toggle the info portion down
-  $(this).next("div").slideToggle();
+  $(this).next("div").slideToggle(600);
   //store the value of the current trail in a variable
   var currentTrail = $(this).attr("value")
   //Run the Open Weather Map API, using the latitude and longitude stored earlier

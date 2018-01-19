@@ -42,14 +42,15 @@ Picture goes here
 __________________
 
 ## Rough Breakdown of Tasks
--build initial HTML: 
-
--familiarize selves w/ these APIs:
-Hillary - Trails;
-Jon - Maps;
-Soraia - Weather; 
-
-Jen / Jon --- look into CSS Grid;
+-user enters either his/her zip or full street address in the provided search box;
+-he/she may also optionally select one of 3 radii ragnes (25 - 100 miles) via radio button to limit the subsequent search;
+-he/she either presses enter key or clicks search button;
+-this jumps the user further down the DOM into a results div;
+-the function queries the Google Maps API to return latitude and longitude coordinates for the submitted address;
+-said coordinates are then passed into the Hiking Project API, which then produces an object full of any trails that may fall in the default/desired radius area;
+-the app then appends a list of each of these trails to the DOM alongside relevant info available in the aforementioned APIs (e.g. location map; trail conditions; etc)
+-each result can be expanded for information
+-if users select a particular result, they can leave comments / reviews, which will be stored in a Firebase DB for future users to see;
 
 ## Team Roles
 Merge (Code Review) / Branch Master Enforcer : Jen;

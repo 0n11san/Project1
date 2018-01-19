@@ -10,8 +10,6 @@ var radius = 0;
 
 // this callback will serve as the function to which both a key press (Enter) and the button click ("#submit") refer
 
-//When user clicks the "submit" button
-
 var submissionCallback = function() {
   $("#search-results").empty();
   //store the value of user input in a variable

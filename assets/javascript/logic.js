@@ -8,8 +8,11 @@ var radius = 0;
 
 //////////////////////FUNCTIONALITY - SUBMIT////////////////////////////////////
 
+// this callback will serve as the function to which both a key press (Enter) and the button click ("#submit") refer
+
 //When user clicks the "submit" button
-$("#submit").on("click", function() {
+
+var submissionCallback = function() {
   $("#search-results").empty();
   //store the value of user input in a variable
   var userInput = $("#txtAddress").val();
@@ -18,7 +21,6 @@ $("#submit").on("click", function() {
 
   radius = $("input:checked").val();
   $("#miles").text(radius);
-
 
 //   //check to make sure one of the radius options have been selected
 //   var chx = $("input[name=radius]")
@@ -85,6 +87,13 @@ $("#submit").on("click", function() {
       scrollTop: $("#search-results").offset().top
     }, 2000);
 
+};
+
+//When user clicks the "submit" button...
+$("#submit").click(submissionCallback);
+//...or when user presses "Enter" key, it'll execute the callback function
+$("input").keypress(function() {
+    if (event.which == 13) submissionCallback();
 });
 
 

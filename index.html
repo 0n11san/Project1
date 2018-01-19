@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>Group Project 1</title>
+	<title>KAIRNS</title>
 
 	<link type='text/css' rel='stylesheet' href='assets/css/style.css' />
 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Open+Sans+Condensed:300" rel="stylesheet">
@@ -26,6 +26,13 @@
 				  <div class="container-4">
 				    <input type="text" id="txtAddress" placeholder="Enter Zip or Address" />
 				    <button type="button" class="icon" id="submit"><i class="fa fa-search"></i></button>
+						<label for="radius-options"><br>Within <span id="miles">_</span> Miles</label>
+							<button<form action="">
+  							<input type="radio" name="radius" value="25">25
+  							<input type="radio" name="radius" value="50">50
+  							<input type="radio" name="radius" value="100">100
+							</form>
+							<div id="error-select-radius"></div>
 				  </div>
 				</div>
 			</div>
@@ -34,7 +41,6 @@
 
 	<!-- search results populate below -->
 	<div class="search-results" id="search-results">
-		<div id="map">
 
 		</div>
 	</div>

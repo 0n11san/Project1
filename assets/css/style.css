@@ -281,3 +281,12 @@ form label {
   -webkit-filter: grayscale(0);
   -webkit-transform: scale(1.25);
 }
+
+
+
+/* MTN Images for Review */
+.mtn-rating img {
+  height: 40px;
+  display: inline;
+  padding: 10px;
+}

@@ -44,6 +44,14 @@ function rateTrail() {
 
 }
 
+//////////////////////GOOGLE MAPS AUTOCOMPLETE ////////////////////////////////
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      (document.getElementById('txtAddress')),
+      {types: ['geocode']});
+};
 //////////////////////FUNCTIONALITY - SUBMIT////////////////////////////////////
 
 // this callback will serve as the function to which both a key press (Enter) and the button click ("#submit") refer
@@ -202,3 +210,4 @@ $(document).on("click", ".addComment", function() {
 })
 
 ////////////////////////////////////////////////////////////////////////////////
+$(document).ready(initAutocomplete);

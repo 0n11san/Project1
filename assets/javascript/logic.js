@@ -5,6 +5,9 @@ var lat = 0;
 var long = 0;
 var radius = 0;
 var rating = 0;
+var trailID = "";
+var trailValue = 0;
+
 //////INITIATE FIREBASE//////
 var config = {
     apiKey: "AIzaSyAHJ4UpOSPIsipGmPXYQnv9y8tJ3n4BTvM",
@@ -103,6 +106,7 @@ var submissionCallback = function() {
             contentDivTitle.attr("latitude", lat);
             contentDivTitle.attr("longitude", long);
             contentDivTitle.attr("value", i);
+            contentDivTitle.attr("trailID", response.trails[i].name.split(' ').join(''));
 
             //give div title a custom attribute called TrailID set to the name of the trail
             //this will be used later for our firebase calls
@@ -127,7 +131,7 @@ var submissionCallback = function() {
               "<br><a href='" + response.trails[i].url + "' target='_blank'>Trail Map & More Info </a></div>" +
               //next create a div to hold the comments.
               //includes the comment form and a button to submit comments
-              "<div commentsFor='" + response.trails[i].name.split(' ').join('') + "'><h2>Leave a Review</h2><label for='dateVisited'>Date Visited</label><input type='date' class='dateVisited'></input><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><label for='userComment'>Comments</label><input type='text' class='userComment'></input><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button><h2>User Comments</h2></div>").hide();
+              "<div commentsFor='" + response.trails[i].name.split(' ').join('') + "'><h2>Leave a Review</h2><label for='dateVisited'>Date Visited</label><input id='date"+i+"' type='date' class='userDate'><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><label for='userComment'>Comments</label><input type='text' class='userComment' id='comment"+i+"'><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button><h2>User Comments</h2></div>").hide();
             //Append the new divs to the search results div
             $("#search-results").append(contentDivTitle);
             $("#search-results").append(contentDivMain);
@@ -157,7 +161,8 @@ $(document).on('click', '.newTrailTitle', function() {
   //slide toggle the info portion down
   $(this).next("div").slideToggle(600);
   //store the value of the current trail in a variable
-  var currentTrail = $(this).attr("value")
+  trailID = $(this).attr("trailID");
+  trailValue =$(this).attr("value");
   //Run the Open Weather Map API, using the latitude and longitude stored earlier
   var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" + "lat=" + $(this).attr("latitude") + "&lon=" + $(this).attr("longitude") + "&units=imperial&cnt=1&appid=9cebf51611031e41d40169d2d6224b0a";
   // Run AJAX call to the OpenWeatherMap API
@@ -167,11 +172,10 @@ $(document).on('click', '.newTrailTitle', function() {
   }).done(function(response) {
     //Grab relevant response data and post to current trail div
     var currentWeather = response.list[0].weather[0].description;
-    $("span.trailWeather" + currentTrail).text(currentWeather);
+    $("span.trailWeather" + trailValue).text(currentWeather);
   });
   rateTrail();
 
-  var trailID = $(this).attr("trailID");
   database.ref().once('value', function(snapshot) {
       if (snapshot.hasChild(trailID)) {
         console.log("exists");
@@ -184,11 +188,8 @@ $(document).on('click', '.newTrailTitle', function() {
 
   //funciton to add comments associated with the trail
   database.ref(trailID + "/comments").on("child_added", function(snapshot){
-    var newComment = $("<div>").text(snapshot.val().comment);
-    var newRating = $("<span>").html("<br>rating: " + snapshot.val().rating + "<br>-----");
-    $(newComment).append(newRating)
+    var newComment = $("<div>").html("<span>Date: " + snapshot.val().date + "</span><span>Comment: " + snapshot.val().comment + '</span><span>Rating: ' + snapshot.val().rating);
     $("div[commentsFor='"+trailID+"']").append(newComment);
-    console.log(snapshot.val().comment);
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
   });
@@ -198,13 +199,12 @@ $(document).on('click', '.newTrailTitle', function() {
 
 //When the user adds a comment
 $(document).on("click", ".addComment", function() {
-  var comments = $(this).prev(".userComment").val();
-  var trailID = $(this).attr("name").split(' ').join('');
-  console.log(trailID);
-  console.log(comments);
+  var userDate = $("#date" + trailValue).val();
+  var userComment = $("#comment" + trailValue).val();
 
   database.ref(trailID +"/comments").push({
-    comment: comments,
+    date: userDate,
+    comment: userComment,
     rating: rating
   });
 

@@ -4,26 +4,25 @@
 var lat = 0;
 var long = 0;
 var radius = 0;
-
+var rating = 0;
 //////INITIATE FIREBASE//////
 var config = {
-  apiKey: "AIzaSyDTckKYvbgUYGNughXwp4d1Of7G6hYGAXg",
-  authDomain: "gwbootcamp-fa9c0.firebaseapp.com",
-  databaseURL: "https://gwbootcamp-fa9c0.firebaseio.com",
-  projectId: "gwbootcamp-fa9c0",
-  storageBucket: "gwbootcamp-fa9c0.appspot.com",
-  messagingSenderId: "691124197342"
-};
-firebase.initializeApp(config);
-
-database = firebase.database();
+    apiKey: "AIzaSyAHJ4UpOSPIsipGmPXYQnv9y8tJ3n4BTvM",
+    authDomain: "hiking-7925e.firebaseapp.com",
+    databaseURL: "https://hiking-7925e.firebaseio.com",
+    projectId: "hiking-7925e",
+    storageBucket: "hiking-7925e.appspot.com",
+    messagingSenderId: "345337252889"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
 
 
 ////////////// FUNCTION FOR STAR RATING ////////////////////////////////////////\
 function rateTrail() {
   var isRated = false;
   $(".mtn-img").on("click", function() {
-    var rating = $(this).attr("value");
+    rating = $(this).attr("value");
     console.log(rating);
     $(this).prevAll().addBack().attr("src", "assets/images/mtn-2.png");
     isRated = true;
@@ -117,7 +116,7 @@ var submissionCallback = function() {
               "<br><a href='" + response.trails[i].url + "' target='_blank'>Trail Map & More Info </a></div>" +
               //next create a div to hold the comments.
               //includes the comment form and a button to submit comments
-              "<div commentsFor='" + response.trails[i].name.split(' ').join('') + "'><h2>Leave a Review</h2><label for='dateVisited'>Date Visited</label><input type='date' class='dateVisited'></input><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><label for='userComment'>Comments</label><input type='text' class='userComment'></input><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button><h2>Other User Comments</h2></div>").hide();
+              "<div commentsFor='" + response.trails[i].name.split(' ').join('') + "'><h2>Leave a Review</h2><label for='dateVisited'>Date Visited</label><input type='date' class='dateVisited'></input><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><label for='userComment'>Comments</label><input type='text' class='userComment'></input><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button><h2>User Comments</h2></div>").hide();
             //Append the new divs to the search results div
             $("#search-results").append(contentDivTitle);
             $("#search-results").append(contentDivMain);
@@ -175,6 +174,8 @@ $(document).on('click', '.newTrailTitle', function() {
   //funciton to add comments associated with the trail
   database.ref(trailID + "/comments").on("child_added", function(snapshot){
     var newComment = $("<div>").text(snapshot.val().comment);
+    var newRating = $("<span>").html("<br>rating: " + snapshot.val().rating + "<br>-----");
+    $(newComment).append(newRating)
     $("div[commentsFor='"+trailID+"']").append(newComment);
     console.log(snapshot.val().comment);
   }, function(errorObject) {
@@ -192,7 +193,8 @@ $(document).on("click", ".addComment", function() {
   console.log(comments);
 
   database.ref(trailID +"/comments").push({
-    comment: comments
+    comment: comments,
+    rating: rating
   });
 
 

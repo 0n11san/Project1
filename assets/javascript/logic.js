@@ -115,23 +115,36 @@ var submissionCallback = function() {
             //Create variable to embed the google map at the latitude and longitude
             var embedMap = "<iframe class=\"map\" width=\"300\" height=\"300\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?q=" + lat + "," + long + "&hl=en&z=12&output=embed\"></iframe>"
 
+            //create a div to hold the trail details
+            var contentDivDetails = $("<div class='details'>");
+            //create a div to hold the map
+            var contentDivMap = $("<div class='map'>");
+            // create a div to hold the comments
+            var contentDivComments = $("<div commentsFor='" + response.trails[i].name.split(' ').join('') + "'>")
             //Add content to the trail name and additional trail info divs
             //for the div title add the name and location (city, state)
             contentDivTitle.html(response.trails[i].name + "--" + response.trails[i].location);
-            //for the content main, create a div called details that contains
-            //summary, length, ascent, current conditions, and current weather
-            contentDivMain.html("<div class='details' Summary: " + response.trails[i].summary +
+
+            //Add the summary, length, ascent, current conditions, and current weather to the details div
+            contentDivDetails.html("Summary: " + response.trails[i].summary +
               "<br>Length: " + response.trails[i].length +
               " mi <br> Ascent: " + response.trails[i].ascent +
-              " ft<br>Current Conditions: " + response.trails[i].conditionStatus +
-              "<br>Current Weather: <span class='trailWeather" + i +
-              "'></span>" +
+              " ft" + "<br>Current Weather: <span class='trailWeather" + i +
+              "'></span>" + "<a href=# id='trailForecast"+ i +"' target='_blank'> get full forecast</a>")
               //Then create a div to embed the google map in, and embed the map
-              "</div><div class='map'>" + embedMap +
-              "<br><a href='" + response.trails[i].url + "' target='_blank'>Trail Map & More Info </a></div>" +
-              //next create a div to hold the comments.
-              //includes the comment form and a button to submit comments
-              "<div commentsFor='" + response.trails[i].name.split(' ').join('') + "'><h2>Leave a Review</h2><label for='dateVisited'>Date Visited</label><input id='date"+i+"' type='date' class='userDate'><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><label for='userComment'>Comments</label><input type='text' class='userComment' id='comment"+i+"'><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button><h2>User Comments</h2></div>").hide();
+              contentDivMap.html(embedMap +
+              "<br><a href='" + response.trails[i].url + "' target='_blank'>Trail Map & More Info </a>")
+              //Add the images for rating, date visited input and comments input to the comments div
+              contentDivComments.html("<h2>Leave a Review</h2><label for='dateVisited'>Date Visited</label><input id='date"+i+"' type='date' class='userDate'><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><label for='userComment'>Comments</label><input type='text' class='userComment' id='comment"+i+"'><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button><h2>User Comments</h2></div>");
+
+            //If/else to check to see if current trail conditions are available
+            if (response.trails[i].conditionStatus != 'Unknown'){
+              console.log(response.trails[i].conditionStatus);
+              contentDivDetails.append("<br>Current Conditions: " + response.trails[i].conditionStatus);
+            }
+
+            //Append comments, details, and map to main div
+            contentDivMain.append(contentDivDetails, contentDivMap, contentDivComments).hide();
             //Append the new divs to the search results div
             $("#search-results").append(contentDivTitle);
             $("#search-results").append(contentDivMain);
@@ -172,7 +185,8 @@ $(document).on('click', '.newTrailTitle', function() {
   }).done(function(response) {
     //Grab relevant response data and post to current trail div
     var currentWeather = response.list[0].weather[0].description;
-    $("span.trailWeather" + trailValue).text(currentWeather);
+    $("span.trailWeather" + trailValue).html(currentWeather);
+    $("#trailForecast" + trailValue).attr('href', 'http://openweathermap.org/city/'+response.city.id);
   });
   rateTrail();
 
@@ -188,7 +202,13 @@ $(document).on('click', '.newTrailTitle', function() {
 
   //funciton to add comments associated with the trail
   database.ref(trailID + "/comments").on("child_added", function(snapshot){
-    var newComment = $("<div>").html("<span>Date: " + snapshot.val().date + "</span><span>Comment: " + snapshot.val().comment + '</span><span>Rating: ' + snapshot.val().rating);
+    var newComment = $("<div>").html("<span>Date: " + snapshot.val().date + "</span><span>Comment: " + snapshot.val().comment + '</span>');
+    var ratingsSpan = $("<span>");
+    for (i=0; i < snapshot.val().rating; i++){
+      var newMountain = $("<img class='tiny-mountain' src='assets/images/mtn-2.png'>");
+      ratingsSpan.append(newMountain);
+    }
+    newComment.append(ratingsSpan);
     $("div[commentsFor='"+trailID+"']").append(newComment);
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
@@ -208,7 +228,11 @@ $(document).on("click", ".addComment", function() {
     rating: rating
   });
 
-
+  //clear the comment content divs
+  $("#date" + trailValue).val('');
+  $("#comment" + trailValue).val('');
+  $(".mtn-img").attr("src", "assets/images/mtn-1.png");
+  isRated = false;
 
 })
 

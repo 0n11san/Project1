@@ -290,3 +290,10 @@ form label {
   display: inline;
   padding: 10px;
 }
+
+/* Smaller version of mountain for individual comments */
+.tiny-mountain {
+  height: 20px;
+  display: inline;
+  padding: 5px;
+}

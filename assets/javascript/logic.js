@@ -88,9 +88,6 @@ var submissionCallback = function() {
           method: "GET"
         })
         .done(function(response) {
-          if (response.trails.length === 0){
-            $("#search-results").html('<h3 style="color:white">No trails found</h3><p style="color:white">Try expanding your radius and search again</p>')
-          } else {
           // loop through the response trails and add info to the site
           for (i = 0; i < response.trails.length; i++) {
             // create divs to hold the trail name and additional trail info
@@ -132,7 +129,7 @@ var submissionCallback = function() {
             $("#search-results").append(contentDivTitle);
             $("#search-results").append(contentDivMain);
           }
-        }
+
         });
     });
   // Scroll the user down to search results

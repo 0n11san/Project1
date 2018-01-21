@@ -109,17 +109,31 @@ form label {
   background-repeat: no-repeat;
   width: 100vw;
   height: 0;
-  padding-top: 100%;
+  padding-top: 97%;
 }
 
 /* sets title, subtitle and search bar into background div */
 .page-header {
   position:absolute;
   top: 0;
-  bottom: 0;
+  /* bottom: 0; */
   left: 0;
   right: 0;
+  z-index: 1;
 }
+
+.page-header-fade {
+    /* background-color: yellow; */
+    /* opacity: .5; */
+    height:600px;
+    position:absolute;
+    /* top: 0; */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(22,30,36,0), rgba(22,30,36,1));
+}
+
 
 .header {
   font-family: 'Amatic SC', cursive;
@@ -127,6 +141,7 @@ form label {
   margin: 10px;
   color: white;
   padding-top: 7%;
+
 }
 
 /* SEARCH BAR */
@@ -227,6 +242,8 @@ form label {
   display: inline-block;
   vertical-align: middle;
   margin-top: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   border-radius: 5px;
   background-color: #dee5e2;
   cursor: pointer;

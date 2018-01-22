@@ -290,3 +290,27 @@ form label {
   display: inline;
   padding: 10px;
 }
+
+
+/* Divs for Overall ratings */
+.overall-rating {
+  height: 30px;
+  width: 100px;
+  display: inline;
+}
+
+.tiny-mtn {
+  height: 20px;
+}
+
+.standard-rating-mtns {
+  position: relative;
+}
+
+.user-ratings {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  height: 21px;
+  background: #dee5e2;
+}

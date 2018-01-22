@@ -114,6 +114,11 @@ form label {
   right: 0;
 }
 
+.symbol {
+  height: 110px;
+  width: 110px;
+}
+
 .header {
   font-family: 'Amatic SC', cursive;
   font-size: 150px;

@@ -127,6 +127,11 @@ form label {
     background: linear-gradient(to bottom, rgba(22,30,36,0), rgba(22,30,36,1));
 }
 
+.symbol {
+  height: 110px;
+  width: 110px;
+}
+
 .header {
   font-family: 'Amatic SC', cursive;
   font-size: 150px;

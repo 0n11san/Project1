@@ -214,3 +214,7 @@ $(document).on("click", ".addComment", function() {
 
 ////////////////////////////////////////////////////////////////////////////////
 $(document).ready(initAutocomplete);
+
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+}

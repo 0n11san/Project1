@@ -86,7 +86,7 @@ var submissionCallback = function() {
         long = long.toFixed(4);
 
         //Next, call the hiking project data api using the latitude and longitude pulled fromt google geocoding
-        var queryURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxDistance=" + radius + "&sort=distance&maxResults=20&key=200206461-4fa8ac1aa85295888ce833cca1b5929f"
+        var queryURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxDistance=" + radius + "&maxResults=20&sort=distance&key=200206461-4fa8ac1aa85295888ce833cca1b5929f"
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -120,29 +120,30 @@ var submissionCallback = function() {
               var contentDivComments = $("<div class='comments id='" + response.trails[i].name.split(' ').join('') + ">");
 
               //Create variable to embed the google map at the latitude and longitude
-              var embedMap = "<iframe class=\"map\" width=\"300\" height=\"300\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?q=" + lat + "," + long + "&hl=en&z=12&output=embed\"></iframe>"
+              var embedMap = "<iframe class=\"map\" width=\"200\" height=\"200\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?q=" + lat + "," + long + "&hl=en&z=12&output=embed\"></iframe>"
 
               //Add content to the trail name and additional trail info divs
               //for the div title add the name and location (city, state)
               //Add the mountain images used to display average user rating
-              contentDivTitle.html(response.trails[i].name + "--" + response.trails[i].location + "<div class='overall-rating standard-rating-mtns'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><div class='overall-rating user-ratings'  id='averageRatingFor"+i+"'></div></div>");
+              contentDivTitle.html(response.trails[i].name + "--" + response.trails[i].location);
 
               //to the details div, add the summary, length, ascent, current conditions, and current weather
               contentDivDetails.html("Summary: " + response.trails[i].summary +
+                "<br>Average Rating: " + "<div class='overall-rating standard-rating-mtns'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><div class='overall-rating user-ratings'  id='averageRatingFor"+i+"'></div></div>" +
                 "<br>Length: " + response.trails[i].length +
                 " mi <br> Ascent: " + response.trails[i].ascent +
                 " ft<br>Current Conditions: " + response.trails[i].conditionStatus +
                 "<br>Current Weather: <span id='trailWeather" + i +
                 //add a link that will go to a full forecast on open weather app
-                "'></span><a href='#' id='fullForecast"+i+"'> Get full forecast</a>")
+                "'></span><a href='#' id='fullForecast"+i+"' target='_blank'> Get full forecast</a>" +
+                  "<br><a href='" + response.trails[i].url + "' target='_blank'>Trail Map & More Info </a></div>")
 
                 //Add the google map to the map div along with a link to more info
-              contentDivMap.html("</div><div class='map'>" + embedMap +
-                "<br><a href='" + response.trails[i].url + "' target='_blank'>Trail Map & More Info </a></div>")
+              contentDivMap.html("</div><div class='map'>" + embedMap);
 
                 //Add form to submit new comments to the comment div
                 //includes mountian rating system, date, and comment inputs
-              contentDivComments.html("<h2>Leave a Review</h2><label for='dateVisited'>Date Visited</label><input type='date' class='dateVisited' id='dateVisited"+i+"'></input><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><label for='userComment'>Comments</label><input type='text' class='userComment' id='userComment"+i+"'></input><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button></div><h2>User Comments</h2><div prevcomment='" + response.trails[i].name.split(' ').join('') +"'></div>");
+              contentDivComments.html("<h2>Leave a Review</h2><div class='newCommentDiv'><div><label for='dateVisited'>Date Visited</label><input type='date' class='dateVisited' id='dateVisited"+i+"'></input></div><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><div><label for='userComment'>Comments</label><input type='text' class='userComment' id='userComment"+i+"'></div><div><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button></div><h2>User Comments</h2><div prevcomment='" + response.trails[i].name.split(' ').join('') +"'></div>");
 
               //Append details, map, and comments to the div
               $(contentDivMain).append(contentDivMap, contentDivDetails, contentDivComments).hide();
@@ -190,7 +191,7 @@ $(document).on('click', '.newTrailTitle', function() {
     var currentWeather = response.list[0].weather[0].description;
     $("span#trailWeather" + trailValue).text(currentWeather);
     //add the city id to the url for more info
-    $("#fullForecast" + trailValue).attr("src", "http://openweathermap.org/city/" + response.city.id);
+    $("#fullForecast" + trailValue).attr("href", "http://openweathermap.org/city/" + response.city.id);
   });
   //Run the rate trail function
   rateTrail();
@@ -214,9 +215,9 @@ $(document).on('click', '.newTrailTitle', function() {
   database.ref(trailID + "/comments").on("child_added", function(snapshot){
     //create a div to hold the comment
     //add the date and the comment
-    var newComment = $("<div>").html("date: " + snapshot.val().date + "comment: " + snapshot.val().comment);
+    var newComment = $("<div>").html("<div>date: " + snapshot.val().date + "</div><div>comment: " + snapshot.val().comment +"</div>");
     //Add the new rating visually with mountains
-    var newRating = $("<span>");
+    var newRating = $("<div>");
     //For loop adds correct number of mountains for the rating
     for (i=0; i < snapshot.val().rating; i++){
       newRating.append("<img class='tiny-mtn' src='assets/images/mtn-2.png'>");

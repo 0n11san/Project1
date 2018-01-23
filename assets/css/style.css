@@ -346,3 +346,10 @@ form label {
   right: 0;
   height: 21px;
   background: #cedbd5;
+}
+
+
+/*Weather Icons formatting*/
+.weather-icon {
+  height: 22px;
+}

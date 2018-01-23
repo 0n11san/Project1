@@ -301,7 +301,6 @@ form label {
 
 .grid-2 {
   display: grid;
-  padding: 5px;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto auto;
   grid-gap: 5px;

@@ -127,12 +127,18 @@ var submissionCallback = function() {
               //Add the mountain images used to display average user rating
               contentDivTitle.html(response.trails[i].name + "--" + response.trails[i].location);
 
+              //Check to see if the trail conditions are known
+              //Create a variable to hold the current trail conditions
+              var trailConditions = ""
+              if (response.trails[i].conditionStatus != "Unknown"){
+                trailConditions = "<br>Current Conditions: " + response.trails[i].conditionStatus;
+              }
               //to the details div, add the summary, length, ascent, current conditions, and current weather
               contentDivDetails.html("Summary: " + response.trails[i].summary +
                 "<br>Average Rating: " + "<div class='overall-rating standard-rating-mtns'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><div class='overall-rating user-ratings'  id='averageRatingFor"+i+"'></div></div>" +
                 "<br>Length: " + response.trails[i].length +
                 " mi <br> Ascent: " + response.trails[i].ascent +
-                " ft<br>Current Conditions: " + response.trails[i].conditionStatus +
+                " ft"+ trailConditions +
                 "<br>Current Weather: <span id='trailWeather" + i +
                 //add a link that will go to a full forecast on open weather app
                 "'></span><a href='#' id='fullForecast"+i+"' target='_blank'> Get full forecast</a>" +

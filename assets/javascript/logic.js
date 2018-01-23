@@ -127,12 +127,18 @@ var submissionCallback = function() {
               //Add the mountain images used to display average user rating
               contentDivTitle.html(response.trails[i].name + "--" + response.trails[i].location);
 
+              //Check to see if the trail conditions are known
+              //Create a variable to hold the current trail conditions
+              var trailConditions = ""
+              if (response.trails[i].conditionStatus != "Unknown"){
+                trailConditions = "<br>Current Conditions: " + response.trails[i].conditionStatus;
+              }
               //to the details div, add the summary, length, ascent, current conditions, and current weather
               contentDivDetails.html("Summary: " + response.trails[i].summary +
                 "<br>Average Rating: " + "<div class='overall-rating standard-rating-mtns'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><img class='tiny-mtn' src='assets/images/mtn-2.png'><div class='overall-rating user-ratings'  id='averageRatingFor"+i+"'></div></div>" +
                 "<br>Length: " + response.trails[i].length +
                 " mi <br> Ascent: " + response.trails[i].ascent +
-                " ft<br>Current Conditions: " + response.trails[i].conditionStatus +
+                " ft"+ trailConditions +
                 "<br>Current Weather: <span id='trailWeather" + i +
                 //add a link that will go to a full forecast on open weather app
                 "'></span><a href='#' id='fullForecast"+i+"' target='_blank'> Get full forecast</a>" +
@@ -143,7 +149,17 @@ var submissionCallback = function() {
 
                 //Add form to submit new comments to the comment div
                 //includes mountian rating system, date, and comment inputs
-              contentDivComments.html("<h2>Leave a Review</h2><div class='newCommentDiv'><div><label for='dateVisited'>Date Visited</label><input type='date' class='dateVisited' id='dateVisited"+i+"'></input></div><div class='mtn-rating'><img class='mtn-img' value='1' src='assets/images/mtn-1.png'><img class='mtn-img' value='2' src='assets/images/mtn-1.png'><img class='mtn-img' value='3' src='assets/images/mtn-1.png'><img class='mtn-img' value='4' src='assets/images/mtn-1.png'><img class='mtn-img' value='5' src='assets/images/mtn-1.png'><button class='reset'>Reset</button></div><div><label for='userComment'>Comments</label><input type='text' class='userComment' id='userComment"+i+"'></div><div><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button></div><h2>User Comments</h2><div prevcomment='" + response.trails[i].name.split(' ').join('') +"'></div>");
+              contentDivComments.html("<h2>Leave a Review</h2><div class='newCommentDiv grid-3'>"
+              +"<div><label for='dateVisited'>Date Visited</label><input type='date' class='dateVisited' id='dateVisited"+i+"'>"
+              +"</input></div><div class='mtn-rating'>"+
+              "<img class='mtn-img' value='1' src='assets/images/mtn-1.png'>"+
+              "<img class='mtn-img' value='2' src='assets/images/mtn-1.png'>"+
+              "<img class='mtn-img' value='3' src='assets/images/mtn-1.png'>"+
+              "<img class='mtn-img' value='4' src='assets/images/mtn-1.png'>"+
+              "<img class='mtn-img' value='5' src='assets/images/mtn-1.png'></div>"
+              + "<div><label for='userComment'>Comments</label><input type='text' class='userComment' id='userComment"+i+"'>"
+              + "</div></div><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button>"
+              + "<h2>User Comments</h2><div prevcomment='" + response.trails[i].name.split(' ').join('') +"'>");
 
               //Append details, map, and comments to the div
               $(contentDivMain).append(contentDivMap, contentDivDetails, contentDivComments).hide();
@@ -188,8 +204,17 @@ $(document).on('click', '.newTrailTitle', function() {
     method: "GET"
   }).done(function(response) {
     //Grab relevant response data and post to current trail div
-    var currentWeather = response.list[0].weather[0].description;
-    $("span#trailWeather" + trailValue).text(currentWeather);
+    var currentTemp = Math.round(response.list[0].main.temp);
+    console.log(currentTemp);
+    var weatherIconID = (response.list[0].weather[0].id).toString();;
+
+    if (weatherIconID != "800"){
+      weatherIconID = weatherIconID.slice(0,1)
+    }
+
+    $("span#trailWeather" + trailValue).html(
+      "<img class='weather-icon' src='assets/images/forecast_icons/weather-icon-"+weatherIconID+".png'</img> "
+      + currentTemp + "&#176; &deg");
     //add the city id to the url for more info
     $("#fullForecast" + trailValue).attr("href", "http://openweathermap.org/city/" + response.city.id);
   });
@@ -215,7 +240,7 @@ $(document).on('click', '.newTrailTitle', function() {
   database.ref(trailID + "/comments").on("child_added", function(snapshot){
     //create a div to hold the comment
     //add the date and the comment
-    var newComment = $("<div>").html("<div>date: " + snapshot.val().date + "</div><div>comment: " + snapshot.val().comment +"</div>");
+    var newComment = $("<div class='grid-3'>").html("<div>date: " + snapshot.val().date + "</div><div>comment: " + snapshot.val().comment +"</div>");
     //Add the new rating visually with mountains
     var newRating = $("<div>");
     //For loop adds correct number of mountains for the rating

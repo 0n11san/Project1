@@ -149,7 +149,7 @@ var submissionCallback = function() {
 
                 //Add form to submit new comments to the comment div
                 //includes mountian rating system, date, and comment inputs
-              contentDivComments.html("<h2>Leave a Review</h2><div class='newCommentDiv'>"
+              contentDivComments.html("<h2>Leave a Review</h2><div class='newCommentDiv grid-3'>"
               +"<div><label for='dateVisited'>Date Visited</label><input type='date' class='dateVisited' id='dateVisited"+i+"'>"
               +"</input></div><div class='mtn-rating'>"+
               "<img class='mtn-img' value='1' src='assets/images/mtn-1.png'>"+
@@ -240,7 +240,7 @@ $(document).on('click', '.newTrailTitle', function() {
   database.ref(trailID + "/comments").on("child_added", function(snapshot){
     //create a div to hold the comment
     //add the date and the comment
-    var newComment = $("<div>").html("<div>date: " + snapshot.val().date + "</div><div>comment: " + snapshot.val().comment +"</div>");
+    var newComment = $("<div class='grid-3'>").html("<div>date: " + snapshot.val().date + "</div><div>comment: " + snapshot.val().comment +"</div>");
     //Add the new rating visually with mountains
     var newRating = $("<div>");
     //For loop adds correct number of mountains for the rating

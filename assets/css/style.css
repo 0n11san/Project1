@@ -102,16 +102,34 @@ form label {
   background-repeat: no-repeat;
   width: 100vw;
   height: 0;
-  padding-top: 100%;
+  padding-top: 97%;
 }
 
 /* sets title, subtitle and search bar into background div */
 .page-header {
   position:absolute;
   top: 0;
-  bottom: 0;
+  /* bottom: 0; */
   left: 0;
   right: 0;
+  z-index: 1;
+}
+
+.page-header-fade {
+    /* background-color: yellow; */
+    /* opacity: .5; */
+    height:600px;
+    position:absolute;
+    /* top: 0; */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(22,30,36,0), rgba(22,30,36,1));
+}
+
+.symbol {
+  height: 110px;
+  width: 110px;
 }
 
 .symbol {
@@ -312,3 +330,28 @@ form label {
   /* background: yellow; */
   grid-column: 1 / span 2;
 }
+
+
+
+
+/* Divs for Overall ratings */
+.overall-rating {
+  height: 30px;
+  width: 100px;
+  display: inline;
+}
+
+.tiny-mtn {
+  height: 20px;
+}
+
+.standard-rating-mtns {
+  position: relative;
+}
+
+.user-ratings {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  height: 21px;
+  background: #cedbd5;

@@ -353,3 +353,12 @@ form label {
 .weather-icon {
   height: 22px;
 }
+
+.details {
+  text-align: left;
+  /* padding-right: -50px; */
+}
+
+.map {
+ padding-top: 10px;
+}

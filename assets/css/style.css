@@ -293,7 +293,7 @@ form label {
 
 /* MTN Images for Review */
 .mtn-rating img {
-  height: 40px;
+  height: 20px;
   display: inline;
   padding: 10px;
 }
@@ -345,3 +345,11 @@ form label {
   right: 0;
   height: 21px;
   background: #cedbd5;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+  padding-bottom: 10px;
+}

@@ -101,6 +101,7 @@ form label {
   width: 100vw;
   height: 0;
   padding-top: 97%;
+  overflow: auto;
 }
 
 /* sets title, subtitle and search bar into background div */
@@ -112,10 +113,21 @@ form label {
   z-index: 1;
 }
 
+<<<<<<< HEAD
 .symbol {
   height: 110px;
   width: 110px;
 }
+=======
+/*.page-header-fade {
+    height:600px;
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(22,30,36,0), rgba(22,30,36,1));
+}*/
+>>>>>>> master
 
 .symbol {
   height: 110px;
@@ -288,14 +300,13 @@ form label {
 
 /* MTN Images for Review */
 .mtn-rating img {
-  height: 40px;
+  height: 20px;
   display: inline;
   padding: 10px;
 }
 
 .grid-2 {
   display: grid;
-  padding: 5px;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto auto;
   grid-gap: 5px;
@@ -316,7 +327,12 @@ form label {
   grid-column: 1 / span 2;
 }
 
-
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+  padding-bottom: 10px;
+}
 
 
 /* Divs for Overall ratings */
@@ -340,3 +356,19 @@ form label {
   right: 0;
   height: 21px;
   background: #cedbd5;
+}
+
+
+/*Weather Icons formatting*/
+.weather-icon {
+  height: 22px;
+}
+
+.details {
+  text-align: left;
+  /* padding-right: -50px; */
+}
+
+.map {
+ padding-top: 10px;
+}

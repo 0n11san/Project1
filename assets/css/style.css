@@ -57,8 +57,6 @@ h3 {
 }
 
 /* HEADER */
-/* sets background into div */
-
 
 header h1 {
     font-size: 32px;
@@ -95,7 +93,7 @@ form label {
     text-shadow: 0 0 2px black;
 }
 .page-header-background {
-  background-image: url("../images/ahmad-kadhim-334554.jpg");
+  background-image: url("../images/background-fades.jpg");
   position: relative;
   color: white;
   background-size: contain;
@@ -110,12 +108,17 @@ form label {
 .page-header {
   position:absolute;
   top: 0;
-  /* bottom: 0; */
   left: 0;
   right: 0;
   z-index: 1;
 }
 
+<<<<<<< HEAD
+.symbol {
+  height: 110px;
+  width: 110px;
+}
+=======
 /*.page-header-fade {
     height:600px;
     position:absolute;
@@ -124,6 +127,12 @@ form label {
     right: 0;
     background: linear-gradient(to bottom, rgba(22,30,36,0), rgba(22,30,36,1));
 }*/
+>>>>>>> master
+
+.symbol {
+  height: 110px;
+  width: 110px;
+}
 
 .header {
   font-family: 'Amatic SC', cursive;

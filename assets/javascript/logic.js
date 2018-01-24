@@ -243,7 +243,7 @@ $(document).on('click', '.newTrailTitle', function() {
     //create a div to hold the comment
     //add the date and the comment
     var newComment = $("<div class='grid-3'>").html("<div>" + snapshot.val().date +
-    "</div><div><p><em>" + snapshot.val().comment +"</em></p></div>");
+    "</div><div>" + snapshot.val().comment +"</div>");
     //Add the new rating visually with mountains
     var newRating = $("<div>");
     //For loop adds correct number of mountains for the rating

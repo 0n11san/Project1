@@ -5,6 +5,8 @@ var lat = 0;
 var long = 0;
 var radius = 0;
 var rating = 0;
+var trailID = "";
+var trailValue = ""
 //////INITIATE FIREBASE//////
 var config = {
     apiKey: "AIzaSyAHJ4UpOSPIsipGmPXYQnv9y8tJ3n4BTvM",
@@ -194,8 +196,8 @@ $(document).on('click', '.newTrailTitle', function() {
   //slide toggle the info portion down
   $(this).next("div").slideToggle(600);
   //store the value of the current trail and trail ID as variables
-    var trailID = $(this).attr("trailID");
-    var trailValue = $(this).attr("value");
+    trailID = $(this).attr("trailID");
+    trailValue = $(this).attr("value");
   //Run the Open Weather Map API, using the latitude and longitude stored earlier
   var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" + "lat=" + $(this).attr("latitude") + "&lon=" + $(this).attr("longitude") + "&units=imperial&cnt=1&appid=9cebf51611031e41d40169d2d6224b0a";
   // Run AJAX call to the OpenWeatherMap API
@@ -240,7 +242,8 @@ $(document).on('click', '.newTrailTitle', function() {
   database.ref(trailID + "/comments").on("child_added", function(snapshot){
     //create a div to hold the comment
     //add the date and the comment
-    var newComment = $("<div class='grid-3'>").html("<div>date: " + snapshot.val().date + "</div><div>comment: " + snapshot.val().comment +"</div>");
+    var newComment = $("<div class='grid-3'>").html("<div>" + snapshot.val().date +
+    "</div><div><p><em>" + snapshot.val().comment +"</em></p></div>");
     //Add the new rating visually with mountains
     var newRating = $("<div>");
     //For loop adds correct number of mountains for the rating

@@ -119,7 +119,7 @@ var submissionCallback = function() {
               //create variables to hold the details, map, and comments
               var contentDivDetails = $("<div class='details'>");
               var contentDivMap = $("<div class='map'>");
-              var contentDivComments = $("<div class='comments id='" + response.trails[i].name.split(' ').join('') + ">");
+              var contentDivComments = $("<div class='comments' id='" + response.trails[i].name.split(' ').join('') + "''>");
 
               //Create variable to embed the google map at the latitude and longitude
               var embedMap = "<iframe class=\"map\" width=\"200\" height=\"200\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?q=" + lat + "," + long + "&hl=en&z=12&output=embed\"></iframe>"
@@ -161,7 +161,7 @@ var submissionCallback = function() {
               "<img class='mtn-img' value='5' src='assets/images/mtn-1.png'></div>"
               + "<div><label for='userComment'>Comments</label><input type='text' class='userComment' id='userComment"+i+"'>"
               + "</div></div><button class='addComment' name='" + response.trails[i].name + "'>Add Comment</button>"
-              + "<h2>User Comments</h2><div prevcomment='" + response.trails[i].name.split(' ').join('') +"'>");
+              + "<h2>User Comments</h2><div class='user-reviews' prevcomment='" + response.trails[i].name.split(' ').join('') +"'>");
 
               //Append details, map, and comments to the div
               $(contentDivMain).append(contentDivMap, contentDivDetails, contentDivComments).hide();
@@ -195,6 +195,7 @@ $("input").keypress(function() {
 $(document).on('click', '.newTrailTitle', function() {
   //slide toggle the info portion down
   $(this).next("div").slideToggle(600);
+    $(".user-reviews").html('');
   //store the value of the current trail and trail ID as variables
     trailID = $(this).attr("trailID");
     trailValue = $(this).attr("value");
@@ -216,7 +217,7 @@ $(document).on('click', '.newTrailTitle', function() {
 
     $("span#trailWeather" + trailValue).html(
       "<img class='weather-icon' src='assets/images/forecast_icons/weather-icon-"+weatherIconID+".png'</img> "
-      + currentTemp + "&#176; &deg");
+      + currentTemp + "&#176");
     //add the city id to the url for more info
     $("#fullForecast" + trailValue).attr("href", "http://openweathermap.org/city/" + response.city.id);
   });
@@ -242,7 +243,7 @@ $(document).on('click', '.newTrailTitle', function() {
   database.ref(trailID + "/comments").on("child_added", function(snapshot){
     //create a div to hold the comment
     //add the date and the comment
-    var newComment = $("<div class='grid-3'>").html("<div>" + snapshot.val().date +
+    var newComment = $("<div class='grid-3 user-comment'>").html("<div>" + snapshot.val().date +
     "</div><div>" + snapshot.val().comment +"</div>");
     //Add the new rating visually with mountains
     var newRating = $("<div>");

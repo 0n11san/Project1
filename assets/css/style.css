@@ -29,6 +29,7 @@ padding: 0px;
 text-align: center;
 background-color: #161E24;
 font-family: 'Open Sans Condensed', sans-serif;
+display: grid;
 }
 
 
@@ -263,6 +264,8 @@ form label {
   padding-top: 20px;
   padding-bottom: 20px;
   color: #ADAAA8;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 .hover-image {
@@ -313,7 +316,7 @@ form label {
 
 .grid-3 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
   grid-gap: 5px;
   padding-bottom: 10px;
 }

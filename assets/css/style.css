@@ -130,7 +130,7 @@ form label {
 /* SEARCH BAR */
 .container-4{
   overflow: hidden;
-  width: 400px;
+  width: 20vw;
   vertical-align: middle;
   white-space: nowrap;
   margin-left: auto;
@@ -139,12 +139,12 @@ form label {
 }
 
 .container-4 input#txtAddress{
-  width: 400px;
+  width: 20vw;
   height: 60px;
   background: #6C9991;
   border: none;
   font-size: 12pt;
-  float: left;
+/*   float: left; */
   color: #fff;
   padding-left: 15px;
   -webkit-border-radius: 5px;

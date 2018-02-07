@@ -29,6 +29,7 @@ padding: 0px;
 text-align: center;
 background-color: #161E24;
 font-family: 'Open Sans Condensed', sans-serif;
+display: grid;
 }
 
 
@@ -129,7 +130,7 @@ form label {
 /* SEARCH BAR */
 .container-4{
   overflow: hidden;
-  width: 400px;
+  width: 20vw;
   vertical-align: middle;
   white-space: nowrap;
   margin-left: auto;
@@ -138,12 +139,12 @@ form label {
 }
 
 .container-4 input#txtAddress{
-  width: 400px;
+  width: 20vw;
   height: 60px;
   background: #6C9991;
   border: none;
-  font-size: 12pt;
-  float: left;
+  font-size: 2vw;
+/*   float: left; */
   color: #fff;
   padding-left: 15px;
   -webkit-border-radius: 5px;
@@ -263,6 +264,8 @@ form label {
   padding-top: 20px;
   padding-bottom: 20px;
   color: #ADAAA8;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 .hover-image {
@@ -313,7 +316,7 @@ form label {
 
 .grid-3 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
   grid-gap: 5px;
   padding-bottom: 10px;
 }

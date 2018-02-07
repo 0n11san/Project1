@@ -1,5 +1,7 @@
 # Group Project 1
 
+update! now hosted on CNAME (custom URL): www.kairns.rocks
+
 https://0n11san.github.io/Project1/
 
 ## Name: Trail Marker
